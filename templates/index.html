@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,7 @@
           mono: ['Roboto Mono', 'monospace'],
         },
         colors: {
-          ink:    { DEFAULT: '#0b0c10', 50: '#f0f0f2', 100: '#e0e0e5', 200: '#b8b9c5', 300: '#8e90a2', 400: '#63657e', 500: '#3c3f57', 600: '#2a2d42', 700: '#1e2133', 800: '#141724', 900: '#0b0c10' },
+          ink:    { DEFAULT: "#1a1a2e", 50: "#111827", 100: "#1f2937", 200: "#374151", 300: "#6b7280", 400: "#9ca3af", 500: "#6b7280", 600: "#d1d5db", 700: "#e5e7eb", 800: "#f3f4f6", 900: "#ffffff" },
           ember:  { DEFAULT: '#ff6b35', light: '#ff9165', dark: '#cc4f1f' },
           ice:    { DEFAULT: '#38bdf8', dark: '#0ea5e9' },
           jade:   { DEFAULT: '#34d399', dark: '#10b981' },
@@ -43,19 +43,19 @@
 </script>
 <style>
   * { box-sizing: border-box; }
-  body { background: #0b0c10; }
+  body { background: #f8fafc; }
 
   /* custom scrollbar */
   ::-webkit-scrollbar { width: 4px; height: 4px; }
   ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: #2a2d42; border-radius: 99px; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
 
   /* grid noise overlay */
   body::before {
     content: '';
     position: fixed; inset: 0; pointer-events: none; z-index: 0;
     background-image:
-      linear-gradient(rgba(255,107,53,.03) 1px, transparent 1px),
+      linear-gradient(rgba(255,107,53,.04) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255,107,53,.03) 1px, transparent 1px);
     background-size: 48px 48px;
   }
@@ -138,7 +138,7 @@
 
 <!-- ── ADD/EDIT MODAL ── -->
 <div id="modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
-  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeModal()"></div>
+  <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeModal()"></div>
   <div class="relative bg-ink-800 border border-ink-600 rounded-2xl w-full max-w-lg shadow-2xl animate-slide-up">
     <div class="flex items-center justify-between px-6 py-4 border-b border-ink-700">
       <h2 class="font-bold text-lg" id="modal-title">Add Tracker</h2>
@@ -505,10 +505,10 @@ function renderChart(data, color) {
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: '#1e2133',
-          borderColor: 'rgba(255,255,255,0.08)',
+          backgroundColor: '#ffffff',
+          borderColor: 'rgba(0,0,0,0.10)',
           borderWidth: 1,
-          titleColor: '#8e90a2',
+          titleColor: '#6b7280',
           bodyColor: color,
           bodyFont: { family: 'Roboto Mono', size: 13 },
           titleFont: { family: 'Roboto Mono', size: 11 },
@@ -524,15 +524,15 @@ function renderChart(data, color) {
           time: {
             displayFormats: { minute: 'HH:mm', hour: 'MM/dd HH:mm', day: 'MM/dd', week: 'MM/dd', month: 'yy/MM' }
           },
-          ticks: { color: '#63657e', font: { family: 'Roboto Mono', size: 10 }, maxTicksLimit: 7, maxRotation: 15 },
-          grid:  { color: 'rgba(255,255,255,0.03)' },
+          ticks: { color: '#9ca3af', font: { family: 'Roboto Mono', size: 10 }, maxTicksLimit: 7, maxRotation: 15 },
+          grid:  { color: 'rgba(0,0,0,0.06)' },
         },
         y: {
           ticks: {
-            color: '#63657e', font: { family: 'Roboto Mono', size: 10 },
+            color: '#9ca3af', font: { family: 'Roboto Mono', size: 10 },
             callback: v => v >= 1_000_000 ? '¥'+(v/1_000_000).toFixed(1)+'M' : '¥'+(v/1000).toFixed(0)+'k'
           },
-          grid: { color: 'rgba(255,255,255,0.03)' },
+          grid: { color: 'rgba(0,0,0,0.06)' },
         }
       }
     }
