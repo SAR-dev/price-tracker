@@ -1,0 +1,34 @@
+services:
+
+  api:
+    build: .
+    container_name: silver-tracker-api
+    ports:
+      - "9090:8080"
+    volumes:
+      - silver-data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9090/prices/latest"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+
+  scheduler:
+    build: .
+    container_name: silver-tracker-scheduler
+    volumes:
+      - silver-data:/data
+    restart: unless-stopped
+    # run scraper once immediately on start, then hand off to cron
+    command: >
+      sh -c "
+        echo '[startup] Running first scrape now...';
+        python /app/scraper_browser.py;
+        echo '[startup] Starting cron (runs every hour)...';
+        cron -f
+      "
+
+volumes:
+  silver-data:
+    driver: local

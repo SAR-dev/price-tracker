@@ -1,0 +1,7 @@
+# ASAHI price tracker — fetch all active trackers every hour, weekdays
+# Each tracker's URL + selector is stored in the DB; scraper.py reads them all.
+# To run every day (not just weekdays), change "1-5" to "*"
+
+0 * * * 1-5 /usr/local/bin/python /app/scraper.py >> /data/scraper.log 2>&1
+
+# empty line required at end of crontab

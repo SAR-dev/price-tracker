@@ -1,0 +1,31 @@
+# Database
+prices.db
+*.db-shm
+*.db-wal
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Playwright browsers
+playwright-browsers/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Environment
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
